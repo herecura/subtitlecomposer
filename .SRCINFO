@@ -1,0 +1,22 @@
+pkgbase = subtitlecomposer
+	pkgdesc = A KDE subtitle editor
+	pkgver = 0.5.3
+	pkgrel = 4
+	url = http://sourceforge.net/projects/subcomposer
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = cmake
+	makedepends = automoc4
+	depends = kdelibs
+	depends = gettext
+	optdepends = mplayer: for MPlayer backend
+	source = http://downloads.sourceforge.net/subcomposer/subtitlecomposer-0.5.3.tar.bz2
+	source = subtitlecomposer-build-fixes.patch
+	source = subtitlecomposer-linkage.patch
+	sha256sums = 87f3831b5ae09f4ffcefe586cd3b04b197784bf09652b02518b24a12fde2cad0
+	sha256sums = 5fdc27b3f2e7e8a897ad4f62122e84b628dbd51dfc3e1f70dfe4fa461a45ba94
+	sha256sums = 2af7bcf7b413a56b7abfa13df408fef7501989f694520ee609dea4b407f648b7
+
+pkgname = subtitlecomposer
+
