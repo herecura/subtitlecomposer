@@ -2,7 +2,7 @@
 # Maintainer: Mladen Milinkovic <maxrd2@smoothware.net>
 
 pkgname=subtitlecomposer
-pkgver=0.5.9
+pkgver=0.6.0
 pkgrel=1
 pkgdesc="A KDE subtitle editor"
 arch=('i686' 'x86_64')
@@ -20,7 +20,7 @@ optdepends=(
     'python: for scripting'
 )
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/maxrd2/subtitlecomposer/archive/v${pkgver}.tar.gz")
-sha256sums=('e3b23680dc2eacb5e5eaf8dbc3c9a61c092e0daab5110e86beb8e73099dd53c5')
+sha256sums=('b06553ff2d86bb94da180812970f221b230a7ef7b81ddfcee1654d5b25244e77')
 
 build() {
     cd ${srcdir}/subtitlecomposer-${pkgver}
