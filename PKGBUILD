@@ -3,7 +3,7 @@
 
 pkgname=subtitlecomposer
 pkgver=0.6.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A KDE subtitle editor"
 arch=('i686' 'x86_64')
 url="https://github.com/maxrd2/subtitlecomposer"
@@ -24,7 +24,8 @@ sha256sums=('5dd2a74f16bc3c0b8771690a0fdc0a6928c38578ad2d27a1c84df6890e41fbf8')
 
 build() {
     cd ${srcdir}/subtitlecomposer-${pkgver}
-    cmake -DCMAKE_INSTALL_PREFIX=/usr
+    cmake -DCMAKE_INSTALL_PREFIX=/usr \
+        -DLIB_INSTALL_DIR=lib
     make
 }
 
