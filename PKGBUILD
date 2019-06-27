@@ -2,39 +2,47 @@
 # Maintainer: Mladen Milinkovic <maxrd2@smoothware.net>
 
 pkgname=subtitlecomposer
-pkgver=0.6.6
-pkgrel=2
+_pkgname=SubtitleComposer
+pkgver=0.7.0
+pkgrel=1
 pkgdesc="A KDE subtitle editor"
 arch=('x86_64')
 url="https://github.com/maxrd2/subtitlecomposer"
 license=('GPL')
-depends=('kcoreaddons' 'sonnet' 'kcodecs' 'kross' 'kxmlgui' 'ki18n' 'gstreamer')
+depends=('kcoreaddons' 'sonnet' 'kcodecs' 'kross' 'kxmlgui' 'ki18n' 'ffmpeg')
 makedepends=('extra-cmake-modules')
+
 # Comment/uncomment the following dependencies to disable/enable
-# building of plugins for MPV and Xine player backends.
+# building the plugins for MPV and Xine player backends
 makedepends+=('xine-lib')
 makedepends+=('mpv')
-optdepends=('mpv: for MPV backend'
-    'mplayer: for MPlayer backend'
-    'xine-lib: for Xine backend'
-    'ruby: for scripting'
-    'python: for scripting'
-)
+
+# For consistency, also enable/disable the corresponding optdepends
+optdepends=('gstreamer: GStreamer videoplayer backend'
+            'mpv: MPV videoplayer backend'
+            'mplayer: MPlayer videoplayer backend'
+            'phonon-qt5: Phonon videoplayer backend'
+            'xine-lib: Xine videoplayer backend'
+            'kross-interpreters: Ruby and Python scripting support'
+            'ruby: scripting'
+            'python: scripting')
+
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/maxrd2/${pkgname}/archive/v${pkgver}.tar.gz")
-sha256sums=('6cd1d74f7934cdaa5d492f47da4143bd096a6196f2afcb2827cada9a3cdb2ea4')
+sha256sums=('90dee806df0ee57f4098d417f62014b4533dbf5598d5535c9da1066536c1ed41')
 
 build() {
-  cd ${srcdir}/${pkgname}-${pkgver}
-  cmake \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DLIB_INSTALL_DIR=lib \
-    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-    -DBUILD_TESTING=OFF
+    cd ${_pkgname}-${pkgver}
+    cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DLIB_INSTALL_DIR=lib \
+        -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+        -DBUILD_TESTING=OFF \
+        -DAPP_VERSION="${pkgver}"
     make
 }
 
 package() {
-  cd ${srcdir}/${pkgname}-${pkgver}
+    cd ${_pkgname}-${pkgver}
     make DESTDIR=${pkgdir} install
 }
